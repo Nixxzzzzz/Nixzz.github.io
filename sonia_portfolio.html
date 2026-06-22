@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonia Tiwari — Technical PM & ML Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0d0f;
+      --bg2: #141417;
+      --bg3: #1a1a1f;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.18);
+      --text: #e8e6e0;
+      --muted: #7a7873;
+      --accent: #7c6dfa;
+      --accent2: #a78bfa;
+      --teal: #2dd4bf;
+      --green: #86efac;
+      --radius: 12px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(13,13,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 13px; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { font-size: 13px; padding: 7px 18px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent2); text-decoration: none; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: #fff; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 2.5rem 5rem;
+      max-width: 1000px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-eyebrow { font-size: 12px; letter-spacing: 0.12em; color: var(--teal); text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+    .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--teal); }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--accent2); }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+    .tag { font-size: 12px; padding: 5px 14px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.03em; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { padding: 12px 28px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-outline { padding: 12px 28px; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text); font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+    .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); }
+    .scroll-hint { position: absolute; bottom: 2.5rem; left: 2.5rem; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .scroll-hint::after { content: '↓'; animation: bob 1.6s ease-in-out infinite; display: inline-block; }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+    /* SECTIONS */
+    section { max-width: 1000px; margin: 0 auto; padding: 6rem 2.5rem; }
+    .section-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3rem; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .about-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
+    .about-card h3 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem; }
+    .about-card p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+    .stat { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; text-align: center; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent2); }
+    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .proj-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+      display: flex; flex-direction: column;
+    }
+    .proj-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .proj-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; border-color: rgba(124,109,250,0.3); }
+    .proj-tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+    .proj-tag { font-size: 11px; padding: 3px 10px; border-radius: 999px; background: rgba(124,109,250,0.12); color: var(--accent2); }
+    .proj-tag.teal { background: rgba(45,212,191,0.1); color: var(--teal); }
+    .proj-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+    .proj-desc { color: var(--muted); font-size: 13.5px; line-height: 1.75; flex: 1; }
+    .proj-accent { font-size: 2.2rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--accent2); margin-top: 1.25rem; }
+    .proj-accent span { font-size: 13px; color: var(--muted); font-weight: 400; font-family: 'Inter', sans-serif; margin-left: 4px; }
+    .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.25rem; }
+    .stack-chip { font-size: 11px; padding: 3px 9px; border-radius: 4px; background: var(--bg3); color: var(--muted); font-family: monospace; border: 1px solid var(--border); }
+    .proj-links { display: flex; gap: 10px; margin-top: 1.5rem; }
+    .proj-link { font-size: 12px; color: var(--accent2); text-decoration: none; border: 1px solid rgba(124,109,250,0.3); padding: 5px 14px; border-radius: 999px; transition: all 0.2s; }
+    .proj-link:hover { background: rgba(124,109,250,0.15); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .skill-group-title { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .skill-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .skill-item:last-child { border-bottom: none; }
+    .skill-name { font-size: 13px; color: var(--text); }
+    .skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .skill-dot.mid { background: var(--accent2); opacity: 0.5; }
+
+    /* EXPERIENCE */
+    .exp-timeline { position: relative; }
+    .exp-timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+    .exp-item { padding-left: 2rem; margin-bottom: 2.5rem; position: relative; }
+    .exp-item::before { content: ''; position: absolute; left: -4px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+    .exp-meta { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .exp-role { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; }
+    .exp-co { font-size: 13px; color: var(--accent2); margin-bottom: 0.75rem; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li { font-size: 13.5px; color: var(--muted); line-height: 1.7; padding-left: 1rem; position: relative; margin-bottom: 4px; }
+    .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 3px; }
+
+    /* CONTACT */
+    .contact-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 3rem; text-align: center; }
+    .contact-wrap h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .contact-wrap p { color: var(--muted); margin-bottom: 2rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link { display: flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text); font-size: 13px; text-decoration: none; transition: all 0.2s; }
+    .contact-link:hover { border-color: var(--accent2); color: var(--accent2); }
+    .contact-link svg { width: 16px; height: 16px; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.25rem; }
+      .hero { padding: 7rem 1.25rem 4rem; }
+      .about-grid, .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+      .proj-card.featured { grid-column: auto; grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .contact-wrap { padding: 2rem 1.25rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Sonia Tiwari</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">ECE Engineer · ML Developer · B2B Sales</div>
+  <h1>I build <span>intelligent systems</span><br>and close enterprise deals.</h1>
+  <p class="hero-sub">B.Tech in Electronics & Communication (Minor: CS) · 1.5+ years in B2B enterprise sales · Aspiring Technical Product Manager</p>
+  <div class="hero-tags">
+    <span class="tag">Python · TensorFlow · OpenCV</span>
+    <span class="tag">98.2% CNN Accuracy</span>
+    <span class="tag">Enterprise Sales</span>
+    <span class="tag">IoT · Embedded Systems</span>
+    <span class="tag">Streamlit · Flask</span>
+  </div>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#projects">View Projects</a>
+    <a class="btn-outline" href="https://linkedin.com/in/sonia-tiwari-18381b274/" target="_blank">LinkedIn</a>
+    <a class="btn-outline" href="mailto:tiwarisaab04@gmail.com">Email Me</a>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
+</div>
+
+<hr class="divider" />
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="section-title">Technical depth.<br>Business fluency.</div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>Engineering Background</h3>
+      <p>B.Tech in Electronics & Communication Engineering with a Minor in Computer Science from Chandigarh Engineering College (GPA: 8.36/10). Built real-time ML systems, computer vision pipelines, IoT robots, and full-stack Python applications.</p>
+    </div>
+    <div class="about-card">
+      <h3>Business Experience</h3>
+      <p>1.5+ years in B2B enterprise sales — managing end-to-end client relationships, translating complex technical requirements into commercial solutions, and collaborating across product, engineering, and operations teams.</p>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">98.2%</div>
+      <div class="stat-label">CNN model accuracy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Records managed in CMS</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Python automation scripts</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <div class="section-title">Things I've built.</div>
+  <div class="projects-grid">
+
+    <div class="proj-card featured">
+      <div>
+        <div class="proj-tag-row">
+          <span class="proj-tag">Computer Vision</span>
+          <span class="proj-tag">Deep Learning</span>
+          <span class="proj-tag teal">Real-time ML</span>
+        </div>
+        <div class="proj-title">Vision-Based Sign Language Interpretation</div>
+        <p class="proj-desc">Real-time gesture recognition system using Convolutional Neural Networks and OpenCV. Built the complete ML pipeline — data capture via VideoCapture, preprocessing (grayscale, histogram equalisation, resizing), 3-layer CNN training, and live inference. Deployed as a real-time video application.</p>
+        <div class="proj-stack">
+          <span class="stack-chip">Python</span>
+          <span class="stack-chip">TensorFlow</span>
+          <span class="stack-chip">Keras</span>
+          <span class="stack-chip">OpenCV</span>
+          <span class="stack-chip">NumPy</span>
+          <span class="stack-chip">Scikit-learn</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com" target="_blank">GitHub →</a>
+        </div>
+      </div>
+      <div>
+        <div class="proj-accent">98.2%<span>accuracy</span></div>
+        <div style="margin-top:1rem;font-size:13px;color:var(--muted);line-height:1.7;">
+          <strong style="color:var(--text);display:block;margin-bottom:6px;">Key achievements</strong>
+          5-class gesture classification · Live video inference · End-to-end pipeline from raw frames to prediction
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-tag-row">
+        <span class="proj-tag teal">Robotics</span>
+        <span class="proj-tag">IoT</span>
+        <span class="proj-tag">Embedded Systems</span>
+      </div>
+      <div class="proj-title">Autonomous Line-Follower & Obstacle-Avoidance Robot</div>
+      <p class="proj-desc">Designed and built an autonomous robot using IR sensors for path detection and ultrasonic sensors for real-time obstacle avoidance. Implemented microcontroller-based decision algorithms mimicking industrial automation logic.</p>
+      <div class="proj-stack">
+        <span class="stack-chip">Arduino</span>
+        <span class="stack-chip">C/C++</span>
+        <span class="stack-chip">IR Sensors</span>
+        <span class="stack-chip">Ultrasonic</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-tag-row">
+        <span class="proj-tag">Full-stack</span>
+        <span class="proj-tag">Database</span>
+      </div>
+      <div class="proj-title">Complaint Management System</div>
+      <p class="proj-desc">Led development of a full-stack complaint tracking system managing 500+ records. Designed the database schema, built the Python backend, and created a reporting interface to improve resolution traceability and operational efficiency.</p>
+      <div class="proj-accent">500+<span>records handled</span></div>
+      <div class="proj-stack">
+        <span class="stack-chip">Python</span>
+        <span class="stack-chip">MySQL</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://github.com" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <div class="section-title">What I work with.</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">ML & Data Science</div>
+      <div class="skill-item"><span class="skill-name">Python (Advanced)</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">TensorFlow / Keras</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Scikit-learn</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">OpenCV</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Pandas / NumPy</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Matplotlib / Seaborn</span><span class="skill-dot mid"></span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Engineering & Tools</div>
+      <div class="skill-item"><span class="skill-name">Flask / Streamlit</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">MySQL / SQL</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Git / GitHub</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Arduino / Raspberry Pi</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Selenium / BeautifulSoup</span><span class="skill-dot mid"></span></div>
+      <div class="skill-item"><span class="skill-name">Jupyter / VS Code</span><span class="skill-dot"></span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Business & Product</div>
+      <div class="skill-item"><span class="skill-name">B2B Enterprise Sales</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Stakeholder Management</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Requirements Gathering</span><span class="skill-dot"></span></div>
+      <div class="skill-item"><span class="skill-name">Agile / Jira</span><span class="skill-dot mid"></span></div>
+      <div class="skill-item"><span class="skill-name">Product Thinking</span><span class="skill-dot mid"></span></div>
+      <div class="skill-item"><span class="skill-name">Technical Communication</span><span class="skill-dot"></span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <div class="section-title">Where I've worked.</div>
+  <div class="exp-timeline">
+
+    <div class="exp-item">
+      <div class="exp-meta">2023 – Present</div>
+      <div class="exp-role">B2B Sales Professional</div>
+      <div class="exp-co">[Your Company Name]</div>
+      <ul class="exp-bullets">
+        <li>Managed end-to-end enterprise sales cycles — from prospecting to post-sales relationship management</li>
+        <li>Translated complex technical product requirements into commercial solutions for enterprise clients</li>
+        <li>Collaborated cross-functionally with product, engineering, and operations to align on client deliverables</li>
+        <li>Leveraged ECE/CS background to credibly engage both technical and non-technical buyers</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">2023</div>
+      <div class="exp-role">Technical Mentor — ATL Lab</div>
+      <div class="exp-co">PM SHRI Kendriya Vidyalaya, Dappar</div>
+      <ul class="exp-bullets">
+        <li>Designed and delivered Python and Electronics curriculum to students in a government innovation lab</li>
+        <li>Guided student teams through full project lifecycle: ideation → prototyping → testing → demo</li>
+        <li>Organised structured workshops and inter-school technical events</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">2022</div>
+      <div class="exp-role">Engineer Intern — Sales & Operations</div>
+      <div class="exp-co">TOKI Enterprises</div>
+      <ul class="exp-bullets">
+        <li>Served as technical liaison between client requirements and engineering teams</li>
+        <li>Owned complete order lifecycle: PO → production coordination → quality check → dispatch</li>
+        <li>Interpreted wiring harness technical datasheets and ensured specification compliance before delivery</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">2022</div>
+      <div class="exp-role">Python Development Intern</div>
+      <div class="exp-co">Future Finders</div>
+      <ul class="exp-bullets">
+        <li>Built 10+ Python automation scripts for data processing and workflow optimisation</li>
+        <li>Participated in weekly DSA coding challenges and collaborated on codebase reviews</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="section-label" style="text-align:center;">Contact</div>
+    <h2>Let's connect.</h2>
+    <p>Open to Technical PM, Pre-Sales, and Solutions Engineer roles.<br>Based in Punjab · Open to Bengaluru, Pune, Hyderabad & Remote.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:tiwarisaab04@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l9 6 9-6M3 8h18v12H3V8z"/></svg>
+        tiwarisaab04@gmail.com
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/sonia-tiwari-18381b274/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4M11 10v7"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-link" href="https://github.com" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a class="contact-link" href="tel:+919814390048">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.45 4.36a1 1 0 01-.23 1.02L8.91 10.5a16 16 0 006.59 6.59l1.44-1.54a1 1 0 011.02-.23l4.36 1.45a1 1 0 01.68.95V19a2 2 0 01-2 2A18 18 0 013 5z"/></svg>
+        +91 98143 90048
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by Sonia Tiwari · 2025 · Punjab, India
+</footer>
+
+</body>
+</html>
